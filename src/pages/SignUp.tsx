@@ -20,8 +20,7 @@ export function SignUp() {
             <img src={illustration} alt="Learning illustration"/>
           </div>
         </div>
-
-        <Link to="/sign/login" className="login-btn">LOGIN</Link>
+       <Link to="/sign/login" className="login-btn">LOGIN</Link>
       </div>
   );
 }
