@@ -23,7 +23,7 @@ interface FormData {
     password: string;
 }
 
-export function SignUpForm() {
+export function SignUpForm({user,setUser}) {
     const [formData, setFormData] = useState<FormData>({
         age: '',
         name: '',
@@ -42,6 +42,9 @@ export function SignUpForm() {
                 password: formData.password,
                 age: formData.age
             });
+            setUser( {"Email":formData.email,
+                "Password": formData.password,
+                "UserName": formData.name})
             navigate("/");
         } catch (error) {
             console.error("Error creating account:", error);
@@ -51,16 +54,19 @@ export function SignUpForm() {
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
-            const user = result.user;
+            const usr = result.user;
 
             // Add user to Firestore
             await addDoc(collection(database, "users"), {
-                Username: user.displayName,
-                email: user.email,
-                uid: user.uid,
+                Username: usr.displayName,
+                email: usr.email,
+                uid: usr.uid,
                 provider: 'google'
             });
 
+            setUser( {"Email":usr.email,
+                "Password": usr.uid,
+                "UserName": usr.displayName})
             navigate("/");
         } catch (error) {
             console.error("Error signing in with Google:", error);
