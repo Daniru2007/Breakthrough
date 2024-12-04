@@ -18,7 +18,7 @@ export default function ProgressBar({ current, total, XP }: ProgressBarProps) {
         </button>
         
         <div className="relative group">
-          <div className="bg-brand text-white text-sm px-4 py-1.5 rounded-full shadow-lg shadow-brand/20 transform group-hover:scale-110 transition-transform">
+          <div className="bg-brand text-green-500 text-sm px-4 py-1.5 rounded-full shadow-lg shadow-brand/20 transform group-hover:scale-110 transition-transform">
             Score: {XP}
           </div>
           <div className="absolute inset-0 bg-brand rounded-full blur-xl opacity-20 group-hover:opacity-30 transition-opacity" />

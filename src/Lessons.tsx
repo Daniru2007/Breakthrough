@@ -12,9 +12,9 @@ function Lessons() {
   const question = questionsData.questions[currentQuestion];
 
   const handleSelectAnswer = (answer: string) => {
-    if (selectedAnswer) return;
+    // if (selectedAnswer) return;
     setSelectedAnswer(answer);
-    
+
     if (answer === question.correctAnswer) {
       setXP(prev => prev + 10);
     }

@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes jump {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-100px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes fall {
+  from { transform: translateY(-100px); }
+  to { transform: translateY(0); }
+}
+
+.animate-jump {
+  animation: jump 0.5s ease-out;
+}
+
+.animate-fall {
+  animation: fall 0.5s ease-in;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #111827;
+}
