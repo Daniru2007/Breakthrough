@@ -2,6 +2,7 @@ import React from 'react';
 import { Trophy, Crown, Medal, Flame, Clock } from 'lucide-react';
 import './Leaderboards.css';
 
+// Instead of hardcoding these details in the component, you can fetch them from the collection Users and take the UserExtension from collection
 const leaderboardData = [
   { 
     name: 'Sarah J.',

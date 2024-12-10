@@ -26,23 +26,28 @@ export function LoginForm() {
     const navigate = useNavigate();
   const handleSubmit = async(e: React.FormEvent) => {
       e.preventDefault();
-      const q = query(collection(database, "users"), or(where("Email", "==", formData.emailOrUsername),where("Username", "==", formData.emailOrUsername)));
-      if(q){
+      const q = query(collection(database, "users"), or(where("email", "==", formData.emailOrUsername),where("Username", "==", formData.emailOrUsername)));
+      if(q) {
+          console.log(q)
           const querySnapshot = await getDocs(q);
           querySnapshot.forEach((doc) => {
-          setUser( {"Email":doc.data().Email,
-          "Password": doc.data().Password,
-         "UserName":doc.data().Username})
-          if(doc.data().Password === formData.password) {
-              setError(false);
-          }else{
-              setError(true);
-              return
-          }
+              setUser({
+                  "email": doc.data().email,
+                  "password": doc.data().password,
+                  "UserName": doc.data().Username
+              })
+              if (doc.data().Password === formData.password) {
+                  setError(false);
+              } else {
+                  setError(true);
+                  return
+              }
           });
-            console.log(user);
-            navigate("/content");
+          navigate("/content");
 
+      }else{
+          setError(true);
+          return
       }
 
   };

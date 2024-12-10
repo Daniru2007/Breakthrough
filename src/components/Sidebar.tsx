@@ -29,7 +29,7 @@ export default function Sidebar() {
           alt="Logo" 
           className="logo"
         />
-        <span className="logo-text">duolingo</span>
+        <span className="logo-text">BreakThrough</span>
       </div>
 
       <div className="streak-container">

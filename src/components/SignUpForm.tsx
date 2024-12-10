@@ -1,16 +1,23 @@
 import React, {useContext, useState} from 'react';
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import {initializeApp} from "firebase/app";
+import {getAnalytics} from "firebase/analytics";
 import {firebaseConfig} from "../firebase.tsx";
-import { getFirestore, addDoc, doc, setDoc, collection } from "firebase/firestore";
+import {
+    getFirestore,
+    addDoc,
+    doc,
+    setDoc,
+    collection
+} from "firebase/firestore";
 import {
     getAuth,
     GoogleAuthProvider,
     signInWithPopup
 } from "firebase/auth";
-import { useNavigate  } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import UserContext from "../UserContext.tsx";
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getFirestore(app);
@@ -38,15 +45,34 @@ export function SignUpForm() {
         e.preventDefault();
         try {
             console.log('Form submitted:', formData);
-            await addDoc(collection(database, "users"), {
+
+            const date = new Date()
+            // Add a new user document to the "users" collection
+            const userRef = await addDoc(collection(database, "users"), {
                 Username: formData.name,
                 email: formData.email,
                 password: formData.password,
-                age: formData.age
+                age: formData.age,
+                JoinedAt: date
             });
-            setUser( {"Email":formData.email,
-                "Password": formData.password,
-                "UserName": formData.name})
+
+            // Use the user ID to create a corresponding document in "UserExtension"
+            await setDoc(doc(database, "UserExtension", userRef.id), {
+                UserID: userRef,
+                NoLessons: 0,
+                XP: 0,
+                Gems: 0,
+                DurationOfLessons: 0,
+            });
+
+            // Update the UserContext
+            setUser({
+                Email: formData.email,
+                Password: formData.password,
+                UserName: formData.name,
+                JoinedAt: date
+            });
+
             navigate("/content");
         } catch (error) {
             console.error("Error creating account:", error);
@@ -59,16 +85,29 @@ export function SignUpForm() {
             const usr = result.user;
 
             // Add user to Firestore
-            await addDoc(collection(database, "users"), {
+            const userRef = await addDoc(collection(database, "users"), {
                 Username: usr.displayName,
                 email: usr.email,
                 uid: usr.uid,
                 provider: 'google'
             });
 
-            setUser( {"Email":usr.email,
-                "Password": usr.uid,
-                "UserName": usr.displayName})
+            // Use the user ID to create a corresponding document in "UserExtension"
+            await setDoc(doc(database, "UserExtension", userRef.id), {
+                UserID: userRef.id,
+                NoLessons: 0,
+                XP: 0,
+                Gems: 0,
+                DurationOfLessons: 0
+            });
+
+            // Update the UserContext
+            setUser({
+                Email: usr.email,
+                Password: usr.uid,
+                UserName: usr.displayName
+            });
+
             navigate("/");
         } catch (error) {
             console.error("Error signing in with Google:", error);
@@ -129,7 +168,7 @@ export function SignUpForm() {
                 className="google-btn"
                 onClick={handleGoogleSignIn}
             >
-                <img src="https://www.google.com/favicon.ico" alt="Google" className="google-icon" />
+                <img src="https://www.google.com/favicon.ico" alt="Google" className="google-icon"/>
                 GOOGLE
             </button>
         </form>

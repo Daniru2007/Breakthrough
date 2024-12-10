@@ -1,10 +1,13 @@
 .sidebar {
   width: 16rem;
+  position: fixed;
   background-color: var(--white);
   border-right: 1px solid var(--gray-200);
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  z-index: 1000;
 }
 
 .logo-container {
