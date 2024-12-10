@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {firebaseConfig} from "../firebase.tsx";
 import { getFirestore,or, addDoc, doc, setDoc, collection,query, where, getDocs } from "firebase/firestore";
 import { useNavigate  } from 'react-router-dom';
+import UserContext from "../UserContext.tsx";
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 const database = getFirestore(app);
 
 interface FormData {
@@ -14,14 +15,15 @@ interface FormData {
   password: string;
 }
 
-export function LoginForm({user, setUser}) {
+export function LoginForm() {
+    const {user, setUser} = useContext(UserContext);
   const [formData, setFormData] = useState<FormData>({
     emailOrUsername: '',
     password: ''
   });
 
   const [error, setError] = useState<boolean>(false);
-//FuckLTTE&WeLuvDaGays
+    const navigate = useNavigate();
   const handleSubmit = async(e: React.FormEvent) => {
       e.preventDefault();
       const q = query(collection(database, "users"), or(where("Email", "==", formData.emailOrUsername),where("Username", "==", formData.emailOrUsername)));
@@ -39,6 +41,8 @@ export function LoginForm({user, setUser}) {
           }
           });
             console.log(user);
+            navigate("/content");
+
       }
 
   };

@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { CircleArrowLeft } from 'lucide-react'; // Import from Lucide React
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Learn from './pages/Learn';
@@ -14,14 +15,38 @@ import Notifications from './pages/notifications/Notifications';
 import Friends from './pages/friends/Friends';
 import Privacy from './pages/privacy/Privacy';
 import './Content.css';
+import Speech from "./Speech.tsx";
+import Lessons from "./Lessons.tsx";
+import Game from "./Pacman.tsx";
 
 function Content() {
+  const navigate = useNavigate();
+
   return (
       <div className="app">
         <Sidebar />
         <main className="main-content">
+          {/* Back Button */}
+          <CircleArrowLeft
+              onClick={() => navigate(-1)}
+              className="back-button"
+              style={{
+                position: 'sticky',
+                top: '10px',
+                left: '270px',
+                cursor: 'pointer',
+                color: '#888', // Subtle color
+                opacity: 0.6,  // Slightly transparent
+                width: '40px',
+                height: '40px',
+              }}
+          />
+
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="learn/speaking" element={<Speech />} />
+            <Route path="learn/quiz" element={<Lessons />} />
+            <Route path="learn/game" element={<Game />} />
             <Route path="learn" element={<Learn />} />
             <Route path="practice" element={<Practice />} />
             <Route path="leaderboards" element={<Leaderboards />} />

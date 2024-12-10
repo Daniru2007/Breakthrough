@@ -3,11 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 import { SignUp } from './pages/SignUp';
 import { Login } from './pages/Login';
 
-function Sign({user,setUser}) {
+function Sign() {
   return (
       <Routes>
-        <Route path="/" element={<SignUp user={user} setUser={setUser}  />} />
-        <Route path="login" element={<Login user={user} setUser={setUser} />} />
+        <Route path="/" element={<SignUp/>} />
+        <Route path="login" element={<Login/>} />
       </Routes>
 
   );

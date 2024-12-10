@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {firebaseConfig} from "../firebase.tsx";
@@ -9,6 +9,7 @@ import {
     signInWithPopup
 } from "firebase/auth";
 import { useNavigate  } from 'react-router-dom';
+import UserContext from "../UserContext.tsx";
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -23,7 +24,8 @@ interface FormData {
     password: string;
 }
 
-export function SignUpForm({user,setUser}) {
+export function SignUpForm() {
+    const {user, setUser} = useContext(UserContext);
     const [formData, setFormData] = useState<FormData>({
         age: '',
         name: '',
@@ -45,7 +47,7 @@ export function SignUpForm({user,setUser}) {
             setUser( {"Email":formData.email,
                 "Password": formData.password,
                 "UserName": formData.name})
-            navigate("/");
+            navigate("/content");
         } catch (error) {
             console.error("Error creating account:", error);
         }

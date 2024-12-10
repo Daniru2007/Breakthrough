@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Globe, Brain, Eye, Ear, HandMetal, Sparkles, ArrowUp } from 'lucide-react';
+import {useNavigate} from "react-router-dom";
 import { SubjectButton } from './components/SubjectButton';
 import './Home.css';
 
@@ -36,6 +37,8 @@ function Home() {
     { name: 'JAPANESE', description: 'Visual and audio-based learning of Japanese characters and sounds' }
   ];
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />
@@ -57,9 +60,9 @@ function Home() {
           <Globe size={200} strokeWidth={1} />
         </div>
         <h1>The free, fun, and effective way to<br />learn a new skill!</h1>
-        <button className="button button-primary">GET STARTED</button>
+        <button className="button button-primary" onClick={()=>navigate("/sign")}>GET STARTED</button>
         <div>
-          <button className="button button-secondary">I ALREADY HAVE AN ACCOUNT</button>
+          <button className="button button-secondary" onClick={()=> navigate("/sign/login")}>I ALREADY HAVE AN ACCOUNT</button>
         </div>
       </section>
 
