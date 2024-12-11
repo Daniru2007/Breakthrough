@@ -4,8 +4,9 @@ import Content from './Content.tsx';
 import Lessons from './Lessons.tsx';
 import Speech from './Speech.tsx';
 import Sign from './Sign.tsx';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, useNavigate} from "react-router-dom";
 import UserContext from "./UserContext.tsx";
+import { Navigate } from 'react-router-dom';
 
 
 function App() {
@@ -14,11 +15,12 @@ function App() {
         <div>
             <Router>
                 <Routes>
-                    <Route path="/" element={user?<Content/>:<Home />}/>
-                    <Route path="/lessons" element={<Lessons />}/>
-                    <Route path="/speech" element={<Speech />}/>
-                    <Route path="/content/*" element={<Content/>}/>
-                    <Route path="/sign/*" element={<Sign/>}/>
+                        <Route path="/" element={user ? <Content /> : <Home />} />
+                        <Route path="/sign/*" element={<Sign />} />
+                        <Route path="/lessons" element={<Lessons />} />
+                        <Route path="/speech" element={<Speech />} />
+                        <Route path="/content/*" element={<Content />} />
+
                 </Routes>
             </Router>
         </div>

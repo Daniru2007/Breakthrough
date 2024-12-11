@@ -26,7 +26,7 @@ function Profile() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                if (!user || !user.Email) {
+                if (!user || !user.email) {
                     console.error('User context or email is missing.', user);
                     return;
                 }
@@ -34,7 +34,7 @@ function Profile() {
                 // Query the `users` collection to find the userId by email
                 const usersQuery = query(
                     collection(db, 'users'),
-                    where('email', '==', user.Email)
+                    where('email', '==', user.email)
                 );
                 const usersSnapshot = await getDocs(usersQuery);
 

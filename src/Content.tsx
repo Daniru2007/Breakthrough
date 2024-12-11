@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { CircleArrowLeft } from 'lucide-react'; // Import from Lucide React
 import Sidebar from './components/Sidebar';
@@ -18,6 +18,7 @@ import './Content.css';
 import Speech from "./Speech.tsx";
 import Lessons from "./Lessons.tsx";
 import Game from "./Pacman.tsx";
+import UserContext from "./UserContext.tsx";
 
 function Content() {
   const navigate = useNavigate();
@@ -65,3 +66,4 @@ function Content() {
 }
 
 export default Content;
+// https://github.com/vladmandic/human read the docs properly AND MAKE THIS ACTUALLY WORK PLZZ
