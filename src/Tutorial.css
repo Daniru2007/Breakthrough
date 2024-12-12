@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+#title{
+    color:white !important;
+    -webkit-text-fill-color: white !important;
+    margin-bottom: 00px;
+}

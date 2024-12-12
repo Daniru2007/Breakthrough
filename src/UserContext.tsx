@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, createContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
 

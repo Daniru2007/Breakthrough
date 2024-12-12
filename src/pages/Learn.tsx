@@ -1,5 +1,4 @@
-import React from 'react';
-import {Link, BrowserRouter as Router} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { Gamepad2,NotebookPen, AudioLines, CirclePlay, Lock,Book, Trophy } from 'lucide-react';
 import './Learn.css';
 
@@ -9,6 +8,7 @@ const units = [
     title: 'Unit 1',
     description: 'Form basic sentences, greet people',
     color: '#58cc02',
+    guide: './tute',
     isLocked: false,
     lessons: [
       { type: 'quiz', completed: true, link: "./quiz" }, //speaking
@@ -21,6 +21,7 @@ const units = [
     title: 'Unit 2',
     description: 'Get around in a city',
     color: '#ce82ff',
+    guide: './tute',
     isLocked: false,
     lessons: [
       { type: 'quiz', completed: true, link: "./quiz" }, //speaking
@@ -33,6 +34,7 @@ const units = [
     title: 'Unit 3',
     description: 'Order food and drink',
     color: '#00cd9c',
+    guide: './tute',
     isLocked: true,
     lessons: [
       { type: 'quiz', completed: true, link: "./quiz" }, //speaking
@@ -43,6 +45,7 @@ const units = [
 ];
 
 function Learn() {
+  const navigate = useNavigate();
   return (
       <div className="learn-container">
         <div className="learn-content">
@@ -54,7 +57,7 @@ function Learn() {
                       <h2>{unit.title}</h2>
                       <p>{unit.description}</p>
                     </div>
-                    <button className="guidebook-btn">
+                    <button className="guidebook-btn" onClick={()=>navigate(unit.guide)}>
                       <Book size={16} />
                       GUIDEBOOK
                     </button>

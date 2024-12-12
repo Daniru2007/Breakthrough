@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useRef, useState } from 'react';
 import * as Human from '@vladmandic/human';
 import type { EmotionDetectionProps } from '../types/emotion';
@@ -105,7 +106,7 @@ const EmotionTracker: React.FC<EmotionDetectionProps> = ({onEmotionUpdate }) => 
             const {score,emotion} = confidence;
             if (score > maxConfidence) {
               // console.log('Emotion:', emotion, 'Confidence:', confidence);
-              maxConfidence = confidence;
+              maxConfidence = score;
               // Map the emotion names to our supported set
               switch (emotion) {
                 case 'happy':

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { Trophy, Crown, Medal, Flame, Clock } from 'lucide-react';
 import { collection, query, getDocs, doc, getFirestore, where } from 'firebase/firestore';

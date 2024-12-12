@@ -6,7 +6,7 @@ import GrammarSection from './components/GrammarSection';
 import type { EmotionData } from './types/emotion';
 import { BookOpen } from 'lucide-react';
 import { PopupOverlay } from './components/PopupOverlay';
-import "./Tutorial.css";
+import "./Pacman.css";
 
 function Tutorial() {
     const [emotions, setEmotions] = useState<EmotionData>({
@@ -75,24 +75,18 @@ function Tutorial() {
     ];
 
     return (
-        <div className="min-h-screen" >
-            <header className="bg-[#2ECB46] text-white py-6" style={{
-                maxHeight:'300px',
-                display:'flex',
-                justifyContent:'center',
-                alignItems:'center',
-                margin: '-75px'
-            }}>
-                <div className="container flex flex-col items-start justify-items-start mx-auto px-4">
-                    <div className="flex items-center space-x-2">
-                        <BookOpen className="w-8 h-8"/>
-                        <h1 className="text-3xl font-bold" id="title">English Grammar Tutorial</h1>
+        <div className="min-h-screen bg-gray-100 ">
+            <header className="bg-[#2ECB46] text-white">
+                <div className="container mx-auto">
+                    <div className="flex items-center">
+                        <BookOpen className="w-8 h-8" />
+                        <h1 className="text-3xl font-bold">English Grammar Tutorial</h1>
                     </div>
                     <p className="mt-2">Interactive Learning with Emotion Tracking</p>
                 </div>
             </header>
 
-            <main className="container  px-4 py-8" style={{padding:"50px"}}  >
+            <main className="container  ml-auto px-4 py-8">
                 <div className="grid md:grid-cols-3 gap-8">
                     <div className="md:col-span-2">
                         {grammarSections.map((section, index) => (
@@ -108,12 +102,14 @@ function Tutorial() {
                     <div className="space-y-6">
                         <div className="bg-white rounded-lg shadow-lg p-6">
                             <h2 className="text-xl font-bold mb-4">Emotion Tracker</h2>
-                            <EmotionTracker onEmotionUpdate={handleEmotionUpdate}/>
+                            <EmotionTracker  onEmotionUpdate={handleEmotionUpdate} />
                         </div>
-                        <EmotionStats emotions={emotions}/>
+                        <EmotionStats emotions={emotions} />
                     </div>
                 </div>
             </main>
+            <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${showPopup ? 'visible' : 'hidden'}`}/>
+
             <PopupOverlay isOpen={showPopup} onClose={() => setShowPopup(false)}/>
         </div>
     );

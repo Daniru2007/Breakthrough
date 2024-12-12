@@ -1,4 +1,3 @@
-import React from 'react';
 import { Gem, Heart, Shield, Zap } from 'lucide-react';
 import './Shop.css';
 

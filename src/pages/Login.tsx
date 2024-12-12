@@ -1,4 +1,3 @@
-import React from 'react';
 import { LoginForm } from '../components/LoginForm';
 import illustration from '../assets/learning-illustration.svg';
 import { Link } from 'react-router-dom';

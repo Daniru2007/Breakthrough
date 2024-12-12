@@ -1,4 +1,3 @@
-import React from 'react';
 import { GameBoard } from './components/Game/components/GameBoard';
 import { GameProvider } from './components/Game/context/GameContext';
 

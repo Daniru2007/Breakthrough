@@ -1,4 +1,3 @@
-import React from 'react';
 import { Settings, HelpCircle, Bell, Users, Shield } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import './More.css';

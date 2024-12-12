@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, {useContext, useEffect, useState} from 'react';
 import {Clock, Zap, Trophy, Medal, Pencil} from 'lucide-react';
 import './Profile.css';

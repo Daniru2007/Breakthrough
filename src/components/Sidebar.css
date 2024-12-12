@@ -1,6 +1,5 @@
 .sidebar {
   width: 16rem;
-  position: fixed;
   background-color: var(--white);
   border-right: 1px solid var(--gray-200);
   padding: 1rem;

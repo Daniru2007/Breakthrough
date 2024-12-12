@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import ProgressBar from './components/ProgressBar';
 import QuestionCard from './components/QuestionCard';

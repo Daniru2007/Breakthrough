@@ -1,4 +1,3 @@
-import React from 'react';
 import { SpeakingCountdown } from './SpeakingCountdown';
 import { SpeakingPrompt } from './SpeakingPrompt';
 import { SpeakingRecorder } from './SpeakingRecorder';

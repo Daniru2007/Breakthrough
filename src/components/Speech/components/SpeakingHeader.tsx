@@ -1,4 +1,3 @@
-import React from 'react';
 import { Mic2, Brain, Clock3 } from 'lucide-react';
 
 export function SpeakingHeader() {

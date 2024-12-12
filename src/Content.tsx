@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, {useContext} from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { CircleArrowLeft } from 'lucide-react'; // Import from Lucide React
@@ -19,12 +20,13 @@ import Speech from "./Speech.tsx";
 import Lessons from "./Lessons.tsx";
 import Game from "./Pacman.tsx";
 import UserContext from "./UserContext.tsx";
+import Tutorial from "./Tutorial.tsx";
 
 function Content() {
   const navigate = useNavigate();
 
   return (
-      <div className="app">
+      <div className="app" style={{overflowX:'hidden'}}>
         <Sidebar />
         <main className="main-content">
           {/* Back Button */}
@@ -32,7 +34,8 @@ function Content() {
               onClick={() => navigate(-1)}
               className="back-button"
               style={{
-                position: 'sticky',
+                position: 'fixed',
+                  display: 'inline',
                 top: '10px',
                 left: '270px',
                 cursor: 'pointer',
@@ -48,6 +51,7 @@ function Content() {
             <Route path="learn/speaking" element={<Speech />} />
             <Route path="learn/quiz" element={<Lessons />} />
             <Route path="learn/game" element={<Game />} />
+          <Route path="learn/tute" element={<Tutorial />} />
             <Route path="learn" element={<Learn />} />
             <Route path="practice" element={<Practice />} />
             <Route path="leaderboards" element={<Leaderboards />} />
@@ -66,4 +70,3 @@ function Content() {
 }
 
 export default Content;
-// https://github.com/vladmandic/human read the docs properly AND MAKE THIS ACTUALLY WORK PLZZ

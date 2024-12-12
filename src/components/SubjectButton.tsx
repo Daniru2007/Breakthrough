@@ -1,11 +1,10 @@
-import React from 'react';
-import { 
+import {
   Calculator, 
   Monitor, 
   Languages, 
   Music, 
   Globe2, 
-  Code, 
+  // Code,
   BookOpen 
 } from 'lucide-react';
 

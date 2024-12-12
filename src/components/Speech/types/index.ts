@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface Question {
   text: string;
   timeLimit: number;

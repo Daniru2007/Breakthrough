@@ -1,4 +1,3 @@
-import React from 'react';
 import { Trophy, RefreshCw } from 'lucide-react';
 
 interface GameOverProps {

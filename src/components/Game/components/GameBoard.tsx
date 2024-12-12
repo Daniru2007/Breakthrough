@@ -11,6 +11,7 @@ import { theme } from '../styles/theme';
 import { Enemy as EnemyType, Position } from '../types/game';
 import { createEnemy, checkCollision, hasValidPath } from '../utils/gameUtils';
 import { calculateNextEnemyMove } from '../utils/enemyAI';
+import updateUserXP from "../../../UserExtensionUpdate.tsx";
 
 const BOARD_SIZE = 10;
 const OBSTACLE_CHANCE = 0.2;
@@ -28,7 +29,7 @@ interface Cell {
 }
 
 export const GameBoard: React.FC = () => {
-  const { addXP, reduceXP, resetXP } = useGame();
+  const { xp, addXP, reduceXP, resetXP } = useGame();
   const [level, setLevel] = useState(1);
   const [board, setBoard] = useState<Cell[][]>([]);
   const [playerPos, setPlayerPos] = useState<Position>(INITIAL_PLAYER_POSITION);
@@ -181,6 +182,7 @@ export const GameBoard: React.FC = () => {
 
         if (newPos.x === BOARD_SIZE - 1 && newPos.y === BOARD_SIZE - 1) {
           if (level === 5) {
+            updateUserXP(xp);
             setGameWon(true);
           } else {
             setLevel(prev => prev + 1);

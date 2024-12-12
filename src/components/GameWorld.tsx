@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { GameState, Platform, Obstacle } from '../types/game';
 import Player from './Player';
 import QuestionModal from './QuestionModal';

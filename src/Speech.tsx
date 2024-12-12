@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SpeakingProgress } from './components/Speech/components/SpeakingProgress';
 import { SpeakingHeader } from './components/Speech/components/SpeakingHeader';
 import { SpeakingTips } from './components/Speech/components/SpeakingTips';

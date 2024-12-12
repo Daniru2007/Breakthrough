@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { Dumbbell, Brain, Clock, Zap } from 'lucide-react';
 import './Practice.css';

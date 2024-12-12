@@ -1,4 +1,3 @@
-import React from 'react';
 import { GameState } from '../types/game';
 import { User } from 'lucide-react';
 

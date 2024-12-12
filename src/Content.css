@@ -26,8 +26,14 @@ body {
   color: var(--gray-900);
 }
 
+.back-button{
+  z-index: 1000;
+}
+
 .app {
   display: flex;
+  flex-grow: 1;
+  width: 100%;
   min-height: 100vh;
 }
 

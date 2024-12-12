@@ -1,4 +1,3 @@
-import React from 'react';
 import { Lightbulb } from 'lucide-react';
 import { speakingTips } from '../utils/tips';
 

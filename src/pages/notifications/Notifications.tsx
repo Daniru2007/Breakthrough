@@ -1,4 +1,3 @@
-import React from 'react';
 import { Trophy, Zap, Heart, Star } from 'lucide-react';
 import './Notifications.css';
 

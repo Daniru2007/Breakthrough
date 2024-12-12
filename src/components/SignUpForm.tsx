@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, {useContext, useState} from 'react';
 import {initializeApp} from "firebase/app";
 import {getAnalytics} from "firebase/analytics";

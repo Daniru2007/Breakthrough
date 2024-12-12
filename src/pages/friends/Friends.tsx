@@ -1,4 +1,3 @@
-import React from 'react';
 import { UserPlus, Flame } from 'lucide-react';
 import './Friends.css';
 

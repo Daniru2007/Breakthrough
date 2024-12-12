@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Circle, CheckCircle2, XCircle, Clock } from 'lucide-react';
 import EmojiCelebration from './EmojiCelebration';
 
