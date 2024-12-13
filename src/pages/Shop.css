@@ -1,0 +1,92 @@
+.shop-container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.shop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.gems-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--white);
+  padding: 0.75rem 1.25rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.gems-count {
+  font-weight: bold;
+  color: var(--gray-900);
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .shop-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.shop-item {
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.shop-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.item-icon {
+  display: inline-flex;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.item-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--gray-900);
+}
+
+.item-description {
+  color: var(--gray-600);
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.buy-button {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.buy-button:hover {
+  background-color: #4caf00;
+}

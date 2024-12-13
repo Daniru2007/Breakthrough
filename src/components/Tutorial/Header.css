@@ -1,0 +1,12 @@
+#head12{
+    -webkit-text-fill-color: white !important;
+    margin-bottom: 10px;
+}
+
+#headbg{
+    margin:-100px;
+    max-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

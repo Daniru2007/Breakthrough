@@ -1,0 +1,36 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "type": "math",
+      "prompt": "Solve for x: 2x + 5 = 13",
+      "correctAnswer": "x = 4",
+      "options": ["x = 2", "x = 3", "x = 4", "x = 5"],
+      "explanation": "2x + 5 = 13\n2x = 8\nx = 4"
+    },
+    {
+      "id": 2,
+      "type": "math",
+      "prompt": "What is the area of a circle with radius 3?",
+      "correctAnswer": "9π",
+      "options": ["6π", "9π", "18π", "27π"],
+      "explanation": "A = πr²\nA = π(3)²\nA = 9π"
+    },
+    {
+      "id": 3,
+      "type": "math",
+      "prompt": "Simplify: (x² + 2x + 1) - (x² - 2x + 4)",
+      "correctAnswer": "4x - 3",
+      "options": ["4x + 3", "4x - 3", "-4x + 3", "-4x - 3"],
+      "explanation": "x² + 2x + 1 - x² + 2x - 4\n= 4x - 3"
+    },
+    {
+      "id": 4,
+      "type": "math",
+      "prompt": "Find the derivative of y = x³ - 2x + 1",
+      "correctAnswer": "3x² - 2",
+      "options": ["3x² - 2", "3x² + 2", "x³ - 2", "x² - 2"],
+      "explanation": "Power rule: nx^(n-1)\n3x² - 2"
+    }
+  ]
+}

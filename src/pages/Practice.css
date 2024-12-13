@@ -1,0 +1,50 @@
+.practice-container {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .practice-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .practice-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.practice-card {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  color: white;
+  text-align: left;
+  transition: opacity 0.2s;
+  width: 100%;
+}
+
+.practice-card:hover {
+  opacity: 0.9;
+}
+
+.practice-icon {
+  margin-bottom: 1rem;
+}
+
+.practice-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.practice-description {
+  opacity: 0.8;
+  font-size: 0.875rem;
+}

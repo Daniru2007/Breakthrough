@@ -1,0 +1,45 @@
+.unit-card {
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.unit-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.unit-info h3 {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.unit-info p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}
+
+.unit-icon {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.locked-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lock-icon {
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 9999px;
+}
