@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Learn from './pages/Learn';
 import Practice from './pages/Practice';
 import Leaderboards from './pages/Leaderboards';
-import Shop from './pages/Shop';
+import Shop from './ShopUpdate';
 import Profile from './pages/Profile';
 import More from './pages/More';
 import Settings from './pages/settings/Settings';

@@ -90,8 +90,7 @@ export const GameBoard: React.FC = () => {
     }
 
     if (newPos.x === BOARD_SIZE - 1 && newPos.y === BOARD_SIZE - 1) {
-      if (level === 1) {
-        // TODO: Add XP to the database
+      if (level === 5) {
         updateUserXPInFirestore(user.email, xp);
         setGameWon(true);
       } else {

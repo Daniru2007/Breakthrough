@@ -1,0 +1,49 @@
+{
+  "categories": [
+    {
+      "name": "Power Ups",
+      "items": [
+        {
+          "id": 1,
+          "name": "Double XP",
+          "description": "2x experience points for your next session",
+          "price": 100,
+          "icon": "Zap"
+        },
+        {
+          "id": 2,
+          "name": "Time Freeze (Beta)",
+          "description": "Pause your timer for 30 seconds",
+          "price": 150,
+          "icon": "Clock"
+        },
+        {
+          "id": 3,
+          "name": "Extra Life (Beta)",
+          "description": "Get an additional life for your next challenge",
+          "price": 200,
+          "icon": "Heart"
+        }
+      ]
+    },
+    {
+      "name": "Cosmetics",
+      "items": [
+        {
+          "id": 4,
+          "name": "Golden Border (Beta)",
+          "description": "Add a shiny border to your profile",
+          "price": 300,
+          "icon": "Crown"
+        },
+        {
+          "id": 5,
+          "name": "Special Effects (Beta)",
+          "description": "Unique visual effects for your achievements",
+          "price": 250,
+          "icon": "Sparkles"
+        }
+      ]
+    }
+  ]
+}
