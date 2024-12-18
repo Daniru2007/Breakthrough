@@ -39,7 +39,7 @@ function Shop() {
       <div className="shop-grid">
         {shopItems.map((item) => (
           <div key={item.title} className="shop-item">
-            <div className="item-icon" style={{ backgroundColor: `${item.color}20`, color: item.color }}>
+            <div className="item-icon"<div className="shop-grid"> style={{ backgroundColor: `${item.color}20`, color: item.color }}>
               <item.icon size={24} />
             </div>
             <h3 className="item-title">{item.title}</h3>

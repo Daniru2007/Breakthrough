@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { motion } from 'framer-motion';
 import { ShopCategory } from './components/Shop/components/ShopCategory';
 import { CurrencyDisplay } from './components/Shop/components/CurrencyDisplay';
@@ -6,19 +6,32 @@ import shopData from './components/Shop/data/shop-items.json';
 import { Store } from 'lucide-react';
 import { Toaster, toast } from 'react-hot-toast';
 import "./ShopUpdate.css"
+import {DisplayGems, DoubleXP} from "./IncreaseXP.tsx";
+import UserContext from "./UserContext.tsx";
+import UserExtensionUpdate from "./UserExtensionUpdate.tsx";
 
 function Shop() {
   const [currency, setCurrency] = useState(1000);
   const [purchaseHistory, setPurchaseHistory] = useState<number[]>([]);
+  const {user, setUser} = useContext(UserContext);
+  const [userExtension, setUserExtension] = useState({Gems: 0, XP: 0});
+
+  useEffect(() => {
+    DisplayGems(setUserExtension,user.email);
+  }, [userExtension]);
 
   const handlePurchase = (itemId: number) => {
     const item = shopData.categories
       .flatMap((cat) => cat.items)
       .find((i) => i.id === itemId);
 
-    if (item && currency >= item.price) {
+    if (item && userExtension.Gems >= item.price) {
       setCurrency((prev) => prev - item.price);
       setPurchaseHistory((prev) => [...prev, itemId]);
+
+      if (item.id === 1){
+        DoubleXP(setUserExtension, user.email);
+      }
       
       toast.success(`Successfully purchased ${item.name}!`, {
         icon: '🎉',
@@ -61,7 +74,7 @@ function Shop() {
               <p className="text-gray-600">Upgrade your experience</p>
             </div>
           </div>
-          <CurrencyDisplay amount={currency} />
+          <CurrencyDisplay amount={userExtension.Gems} />
         </div>
 
         <div className="space-y-8">
