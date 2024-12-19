@@ -1,3 +1,4 @@
+//ts-nocheck
 import { useEffect, useRef } from 'react';
 import { Enemy, Position } from '../types/game';
 import { calculateNextEnemyMove } from '../utils/enemyAI';

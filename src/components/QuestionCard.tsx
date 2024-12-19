@@ -1,6 +1,65 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect, useContext} from 'react';
 import { Circle, CheckCircle2, XCircle, Clock } from 'lucide-react';
 import EmojiCelebration from './EmojiCelebration';
+import UserContext from "../UserContext.tsx";
+import { getDocs, collection, query, where, updateDoc, doc, arrayUnion } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../firebase.tsx';
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/**
+ * Updates the mistake data for a user in Firestore based on their email.
+ * @param userEmail - The email of the user whose mistake data is to be updated.
+ * @param subject - The subject field to update (e.g., 'maths', 'ict', 'english').
+ * @param question - The question that the user made a mistake on.
+ */
+export const updateUserMistakesByEmail = async (
+    userEmail: string,
+    subject: 'maths' | 'ict' | 'english',
+    question: string
+): Promise<void> => {
+  try {
+    // Step 1: Query the `users` collection to get the user document and reference
+    const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
+    const usersSnapshot = await getDocs(usersQuery);
+
+    if (usersSnapshot.empty) {
+      console.error('No user found with the provided email.');
+      return;
+    }
+
+    const userDoc = usersSnapshot.docs[0];
+    const userRef = doc(db, 'users', userDoc.id); // Reference to the user document
+
+    // Step 2: Query the `mistakes` collection using the `userID` reference
+    const mistakesQuery = query(collection(db, 'mistakes'), where('userID', '==', userRef));
+    const mistakesSnapshot = await getDocs(mistakesQuery);
+
+    if (mistakesSnapshot.empty) {
+      console.error('No mistakes document found for the provided user.');
+      return;
+    }
+
+    const mistakeDoc = mistakesSnapshot.docs[0];
+
+    // Step 3: Append the new mistake to the subject array
+    const newMistake = {
+      question,
+      date: new Date(), // Current date and time
+    };
+
+    await updateDoc(doc(db, 'mistakes', mistakeDoc.id), {
+      [subject]: arrayUnion(newMistake), // Add the new mistake to the existing array
+    });
+
+    console.log(`${subject} mistakes updated successfully for user (${userEmail}).`);
+  } catch (error) {
+    console.error('Error updating mistakes in Firestore:', error);
+  }
+};
 
 interface QuestionCardProps {
   prompt: string;
@@ -23,7 +82,7 @@ export default function QuestionCard({
   const [isInCooldown, setIsInCooldown] = useState(false);
   const isCorrect = selectedAnswer === correctAnswer;
   const showNextButton = selectedAnswer === correctAnswer;
-
+  const {user} = useContext(UserContext); // Retrieve logged-in user context
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -42,6 +101,7 @@ export default function QuestionCard({
     if (isInCooldown || selectedAnswer) return;
 
     if (answer !== correctAnswer) {
+      updateUserMistakesByEmail(user.email, 'maths', prompt); // Update mistake count for the user
       setCooldown(5); // Start cooldown when answer is incorrect
       setIsInCooldown(true);
     }

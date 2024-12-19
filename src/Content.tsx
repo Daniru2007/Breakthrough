@@ -6,7 +6,7 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Learn from './pages/Learn';
 import Practice from './pages/Practice';
-import Leaderboards from './pages/Leaderboards';
+import Leaderboard from './Leaderboard';
 import Shop from './ShopUpdate';
 import Profile from './pages/Profile';
 import More from './pages/More';
@@ -21,6 +21,7 @@ import Lessons from "./Lessons.tsx";
 import Game from "./GameUpdate.tsx";
 import UserContext from "./UserContext.tsx";
 import Tutorial from "./Tutorial.tsx";
+import Mistake from "./Mistake.tsx";
 
 function Content() {
   const navigate = useNavigate();
@@ -53,8 +54,9 @@ function Content() {
             <Route path="learn/game" element={<Game />} />
             <Route path="learn/tute" element={<Tutorial />} />
             <Route path="learn" element={<Learn />} />
+              <Route path="practice/mistake" element={<Mistake />} />
             <Route path="practice" element={<Practice />} />
-            <Route path="leaderboards" element={<Leaderboards />} />
+            <Route path="leaderboards" element={<Leaderboard />} />
             <Route path="shop" element={<Shop />} />
             <Route path="profile" element={<Profile />} />
             <Route path="more" element={<More />} />

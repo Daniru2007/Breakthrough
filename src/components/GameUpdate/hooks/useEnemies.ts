@@ -1,3 +1,4 @@
+// ts-nocheck
 import { useState, useCallback } from 'react';
 import { Enemy, Position } from '../types/game';
 import { createEnemy } from '../utils/gameUtils';

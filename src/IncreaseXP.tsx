@@ -1,3 +1,4 @@
+// ts-nocheck
 import { getDocs, collection, query, where, updateDoc, doc } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';

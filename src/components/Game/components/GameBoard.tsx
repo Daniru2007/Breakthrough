@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {useState, useEffect, useCallback, useContext} from 'react';
 import { Player } from './Player';
 import { Enemy } from './Enemy';
 import { QuestionModal } from './QuestionModal';
@@ -12,6 +12,64 @@ import { Enemy as EnemyType, Position } from '../types/game';
 import { createEnemy, checkCollision, hasValidPath } from '../utils/gameUtils';
 import { calculateNextEnemyMove } from '../utils/enemyAI';
 import useUserXPUpdater from "../../../UserExtensionUpdate.tsx";
+
+import { getDocs, collection, query, where, updateDoc, doc } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../../../firebase.tsx';
+import UserContext from "../../../UserContext.tsx";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/**
+ * Updates the mistake count for a user in Firestore based on their email.
+ * @param userEmail - The email of the user whose mistake data is to be updated.
+ * @param subject - The subject field to update (e.g., 'maths', 'ict', 'english').
+ * @param additionalMistakes - The number of mistakes to add to the current count.
+ */
+const updateUserMistakesGame = async (
+    userEmail: string,
+    subject: 'maths' | 'ict' | 'english',
+    additionalMistakes: number
+): Promise<void> => {
+  try {
+    // Step 1: Query the `users` collection to get the user document and reference
+    const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
+    const usersSnapshot = await getDocs(usersQuery);
+
+    if (usersSnapshot.empty) {
+      console.error('No user found with the provided email.');
+      return;
+    }
+
+    const userDoc = usersSnapshot.docs[0];
+    const userRef = doc(db, 'users', userDoc.id); // Reference to the user document
+
+    // Step 2: Query the `mistakes` collection using the `userID` reference
+    const mistakesQuery = query(collection(db, 'mistakes'), where('userID', '==', userRef));
+    const mistakesSnapshot = await getDocs(mistakesQuery);
+
+    if (mistakesSnapshot.empty) {
+      console.error('No mistakes document found for the provided user.');
+      return;
+    }
+
+    const mistakeDoc = mistakesSnapshot.docs[0];
+    const mistakeData = mistakeDoc.data();
+
+    // Step 3: Update the specified subject's mistakes
+    const updatedMistakes = (mistakeData[subject] || 0) + additionalMistakes;
+    await updateDoc(doc(db, 'mistakes', mistakeDoc.id), {
+      [subject]: updatedMistakes,
+    });
+
+    console.log(`${subject} mistakes updated successfully for user (${userEmail}): ${updatedMistakes}`);
+  } catch (error) {
+    console.error('Error updating mistakes in Firestore:', error);
+  }
+};
+
 
 const BOARD_SIZE = 10;
 const OBSTACLE_CHANCE = 0.2;
@@ -40,6 +98,7 @@ export const GameBoard: React.FC = () => {
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [showCollisionModal, setShowCollisionModal] = useState(false);
   const [collidedEnemy, setCollidedEnemy] = useState<EnemyType | null>(null);
+  const {user} = useContext(UserContext); // Retrieve logged-in user context
 
   const resetPositions = useCallback((enemy: EnemyType) => {
     setCollidedEnemy(enemy);
@@ -204,6 +263,7 @@ export const GameBoard: React.FC = () => {
         setBoard(newBoard);
         addXP(XP_PER_QUESTION);
       } else {
+        updateUserMistakesGame(user.email, 'ict', 1).then(() => {console.log("great")});
         setPlayerPos(INITIAL_PLAYER_POSITION);
       }
       setCurrentQuestion(null);

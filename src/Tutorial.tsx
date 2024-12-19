@@ -1,3 +1,4 @@
+// ts-nocheck
 import { useState, useCallback, useEffect } from 'react';
 import type { EmotionData } from './types/emotion';
 import { PopupOverlay } from './components/PopupOverlay';
