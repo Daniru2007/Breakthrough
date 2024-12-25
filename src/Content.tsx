@@ -22,6 +22,8 @@ import Game from "./GameUpdate.tsx";
 import UserContext from "./UserContext.tsx";
 import Tutorial from "./Tutorial.tsx";
 import Mistake from "./Mistake.tsx";
+import {PdfSum} from "./components/PdfSum.tsx";
+import Sum from "./components/Sum.tsx";
 
 function Content() {
   const navigate = useNavigate();
@@ -55,6 +57,8 @@ function Content() {
             <Route path="learn/tute" element={<Tutorial />} />
             <Route path="learn" element={<Learn />} />
               <Route path="practice/mistake" element={<Mistake />} />
+              <Route path="practice/summary" element={<Sum />} />
+              <Route path="practice/summary/pdf" element={<PdfSum />} />
             <Route path="practice" element={<Practice />} />
             <Route path="leaderboards" element={<Leaderboard />} />
             <Route path="shop" element={<Shop />} />
