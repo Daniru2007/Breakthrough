@@ -7,7 +7,6 @@ import './Sum/styles/features.css';
 import './Sum.css'
 
 export default function Sum() {
-
   return (
     <>
       <Background />
