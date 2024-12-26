@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import {useNavigate} from "react-router-dom";
 
 interface FeatureBoxProps {
   title: string;
@@ -8,7 +9,8 @@ interface FeatureBoxProps {
   delay?: number;
 }
 
-export function FeatureBox({ title, description, buttonText, delay = 0 }: FeatureBoxProps) {
+export function FeatureBox({ id, title, description, buttonText, delay = 0 }: FeatureBoxProps) {
+  const navigate = useNavigate();
   return (
     <motion.div
       className="feature-box"
@@ -28,6 +30,7 @@ export function FeatureBox({ title, description, buttonText, delay = 0 }: Featur
           className="feature-button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={()=>navigate(id===1?"./pdf":"./tute")}
         >
           {buttonText}
         </motion.button>
