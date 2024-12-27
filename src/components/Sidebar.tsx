@@ -23,11 +23,6 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="logo-container">
-        <img 
-          src="https://d35aaqx5ub95lt.cloudfront.net/images/duo-spark.svg" 
-          alt="Logo" 
-          className="logo"
-        />
         <span className="logo-text">BreakThrough</span>
       </div>
 

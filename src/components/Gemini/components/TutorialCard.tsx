@@ -12,7 +12,7 @@ interface TutorialCardProps {
 export const TutorialCard: React.FC<TutorialCardProps> = ({ id, title, description }) => {
   return (
     <Link to={`./${id}`}>
-      <motion.div
+    <motion.div
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         className="bg-white rounded-lg shadow-lg p-6 cursor-pointer hover:shadow-xl transition-shadow"

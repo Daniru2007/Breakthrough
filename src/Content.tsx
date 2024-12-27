@@ -60,7 +60,8 @@ function Content() {
               <Route path="practice/mistake" element={<Mistake />} />
               <Route path="practice/summary" element={<Sum />} />
               <Route path="practice/summary/pdf" element={<PdfSum />} />
-              <Route path="practice/summary/tute" element={<Gemini />} />
+              <Route path="practice/summary/tute/*" element={<Gemini />} />
+
             <Route path="practice" element={<Practice />} />
             <Route path="leaderboards" element={<Leaderboard />} />
             <Route path="shop" element={<Shop />} />

@@ -19,8 +19,8 @@ export const TutorialContent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log(enhancedContent);
     const enhanceContent = async () => {
+      console.log(id);
       if (!tutorial?.title || !emotionData) return;
 
       setIsEnhancing(true);

@@ -5,11 +5,12 @@ import { TutorialContent } from './components/Gemini/pages/TutorialContent';
 import { EmotionProvider } from './components/Gemini/context/EmotionContext';
 
 export default function Gemini() {
+    console.log('Gemini');
   return (
     <EmotionProvider>
         <Routes>
           <Route path="/" element={<TutorialList />} />
-          <Route path="./:id" element={<TutorialContent />} />
+          <Route path=":id" element={<TutorialContent />} />
         </Routes>
     </EmotionProvider>
   );
