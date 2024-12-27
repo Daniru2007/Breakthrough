@@ -24,6 +24,7 @@ import Tutorial from "./Tutorial.tsx";
 import Mistake from "./Mistake.tsx";
 import {PdfSum} from "./components/PdfSum.tsx";
 import Sum from "./components/Sum.tsx";
+import Gemini from "./Gemini.tsx";
 
 function Content() {
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ function Content() {
               <Route path="practice/mistake" element={<Mistake />} />
               <Route path="practice/summary" element={<Sum />} />
               <Route path="practice/summary/pdf" element={<PdfSum />} />
+              <Route path="practice/summary/tute" element={<Gemini />} />
             <Route path="practice" element={<Practice />} />
             <Route path="leaderboards" element={<Leaderboard />} />
             <Route path="shop" element={<Shop />} />

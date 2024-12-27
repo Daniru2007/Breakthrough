@@ -1,0 +1,19 @@
+{
+  "tutorials": [
+    {
+      "id": "parts-of-speech",
+      "title": "Parts of Speech",
+      "description": "Understanding the eight parts of speech is essential for mastering English grammar. These include nouns, pronouns, verbs, adjectives, adverbs, prepositions, conjunctions, and interjections."
+    },
+    {
+      "id": "sentence-structure", 
+      "title": "Sentence Structure",
+      "description": "Learn about simple, compound, and complex sentences."
+    },
+    {
+      "id": "punctuation",
+      "title": "Punctuation Rules",
+      "description": "Master the art of punctuation to enhance your writing."
+    }
+  ]
+}
