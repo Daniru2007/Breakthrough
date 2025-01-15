@@ -30,7 +30,7 @@ export function FeatureBox({ id, title, description, buttonText, delay = 0 }: Fe
           className="feature-button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={()=>navigate(id===1?"./pdf":"./tute")}
+          onClick={()=>navigate(id===1?"./tute":"./pdf")} // React Dev -_-
         >
           {buttonText}
         </motion.button>

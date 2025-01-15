@@ -82,8 +82,17 @@ function Mistake() {
             return new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000).toISOString(); // ISO string format
           };
           // Extract Maths mistakes
+          let totalCount = {'Mathematics':{},'ICT':{}};
           if (data.maths) {
             data.maths.forEach((item: { date: string; question: string }) => {
+              const formattedDate = formatDate(item.date); // Format the date into YYYY-MM-DD
+              const dateKey = formattedDate.split('T')[0]; // Extract just the date part (YYYY-MM-DD)
+              // Update totalCount for Mathematics
+              if (totalCount['Mathematics'][dateKey]) {
+                totalCount['Mathematics'][dateKey] += 1;
+              } else {
+                totalCount['Mathematics'][dateKey] = 1;
+              }
               fetchedMistakes.push({
                 id: `${doc.id}-maths-${item.date}`,
                 subject: 'Mathematics',
@@ -91,18 +100,20 @@ function Mistake() {
                 description: item.question,
               });
 
-              // Aggregate by subject
-              subjectCounts['Mathematics'].push({
-                date: formatDate(item.date),
-                count: 1, // Each mistake counts as 1
-                subject: 'Mathematics',
-              });
             });
           }
 
           // Extract ICT mistakes
           if (data.ict) {
             data.ict.forEach((item: { date: string; question: string }) => {
+              const formattedDate = formatDate(item.date); // Format the date into YYYY-MM-DD
+              const dateKey = formattedDate.split('T')[0]; // Extract just the date part (YYYY-MM-DD)
+              // Update totalCount for Mathematics
+              if (totalCount['ICT'][dateKey]) {
+                totalCount['ICT'][dateKey] += 1;
+              } else {
+                totalCount['ICT'][dateKey] = 1;
+              }
               fetchedMistakes.push({
                 id: `${doc.id}-ict-${item.date}`,
                 subject: 'ICT',
@@ -110,12 +121,22 @@ function Mistake() {
                 description: item.question,
               });
 
-              // Aggregate by subject
-              subjectCounts['ICT'].push({
-                date: formatDate(item.date),
-                count: 1,
-                subject: 'ICT',
-              });
+            });
+          }
+
+
+          for (const [date, count] of Object.entries(totalCount['Mathematics'])) {
+            subjectCounts['Mathematics'].push({
+              date,
+              count,
+              subject: 'Mathematics',
+            });
+          }
+          for (const [date, count] of Object.entries(totalCount['ICT'])) {
+            subjectCounts['ICT'].push({
+              date,
+              count,
+              subject: 'ICT',
             });
           }
         });

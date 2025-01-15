@@ -1,36 +1,35 @@
 // @ts-nocheck
 import React from 'react';
-import { Dumbbell, Brain, Clock, Zap } from 'lucide-react';
+import {useNavigate} from 'react-router-dom';
+import { Dumbbell, Brain, Clock, Zap, Book } from 'lucide-react';
 import './Practice.css';
 
 const practiceTypes = [
   {
     icon: Brain,
-    title: 'Lesson Review',
+    title: 'Mistake Analysis',
     description: 'Practice previous lessons',
     color: 'var(--primary-color)',
+    link: './mistake'
   },
   {
-    icon: Clock,
-    title: 'Timed Challenge',
-    description: 'Complete exercises against the clock',
+    icon: Book,
+    title: 'Summarize Tutorials',
+    description: 'Summarize your past papers and tutorials',
     color: 'var(--secondary-color)',
-  },
-  {
-    icon: Zap,
-    title: 'Lightning Round',
-    description: 'Quick-fire practice session',
-    color: 'var(--tertiary-color)',
+    link: './summary'
   },
 ];
 
 function Practice() {
+  const navigate = useNavigate();
   return (
     <div className="practice-container">
       <h1>Practice Exercises</h1>
       <div className="practice-grid">
         {practiceTypes.map((type) => (
           <button
+              onClick={() => {navigate(type.link)}}
             key={type.title}
             className="practice-card"
             style={{ backgroundColor: type.color }}
