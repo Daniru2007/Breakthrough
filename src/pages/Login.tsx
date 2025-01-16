@@ -1,5 +1,5 @@
 import { LoginForm } from '../components/LoginForm';
-import illustration from '../assets/learning-illustration.svg';
+import illustration from '../assets/learn.svg';
 import { Link } from 'react-router-dom';
 
 export function Login() {

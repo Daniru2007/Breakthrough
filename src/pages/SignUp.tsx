@@ -1,5 +1,5 @@
 import { SignUpForm } from '../components/SignUpForm';
-import illustration from '../assets/learning-illustration.svg';
+import illustration from '../assets/learn.svg';
 import { Link } from 'react-router-dom';
 
 export function SignUp() {
