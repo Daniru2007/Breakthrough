@@ -1,5 +1,5 @@
 // ts-nocheck
-import { useState, useCallback, useEffect } from 'react';
+import {useState, useCallback, useEffect, useContext} from 'react';
 import type { EmotionData } from './types/emotion';
 import { PopupOverlay } from './components/PopupOverlay';
 import { Header } from './components/Tutorial/Header';
@@ -7,8 +7,67 @@ import { EmotionPanel } from './components/Tutorial/EmotionPanel';
 import { ContentSection } from './components/Tutorial/ContentSection';
 import { grammarSections } from './data/grammarSections';
 import "./Tutorial.css";
+import {collection, doc, getDocs, query, updateDoc, where} from "firebase/firestore";
+import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from './firebase.tsx';
+import UserContext from "./UserContext.tsx";
+import UserExtensionUpdate from "./UserExtensionUpdate.tsx";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export const updateEmotion = async (userEmail: string, emotionData): Promise<void> => {
+  try {
+    // Step 1: Query the User document to get the document ID
+    const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
+    const usersSnapshot = await getDocs(usersQuery);
+
+    if (usersSnapshot.empty) {
+      console.error('No user found with the provided email.');
+      return;
+    }
+
+    const userDoc = usersSnapshot.docs[0];
+    const userId = userDoc.id; // The document ID for the user
+    const userRef = doc(db, 'users', userId);
+    console.log(userId)
+
+    // Step 2: Query the UserExtension document
+    const userExtensionQuery = query(
+        collection(db, 'EmotionData'),
+        where('UserID', '==', userRef)
+    );
+    const userExtensionSnapshot = await getDocs(userExtensionQuery);
+
+    if (userExtensionSnapshot.empty) {
+      console.error('No UserExtension document found for the user.');
+      return;
+    }
+
+    const userExtensionDoc = userExtensionSnapshot.docs[0];
+    const userExtensionData = userExtensionDoc.data();
+
+    // Step 3: Update the XP
+    await updateDoc(doc(db, 'EmotionData', userExtensionDoc.id), {
+      happy: userExtensionData.happy + emotionData.happy,
+      sad: userExtensionData.sad + emotionData.sad,
+      angry: userExtensionData.angry + emotionData.angry,
+      neutral: userExtensionData.neutral + emotionData.neutral,
+      surprise: userExtensionData.surprise + emotionData.surprise,
+    });
+
+  } catch (error) {
+    console.error('Error updating XP in Firestore:', error);
+  }
+};
+
+
+
+
 
 function Tutorial() {
+  const {user} = useContext(UserContext); // Retrieve logged-in user context
   const [emotions, setEmotions] = useState<EmotionData>({
     happy: 0,
     sad: 0,
@@ -37,6 +96,7 @@ function Tutorial() {
       if (isNegativeDominant) {
         setShowPopup(true);
       }
+      updateEmotion(user.email,emotions)
 
       setEmotions({
         happy: 0,

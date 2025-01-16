@@ -15,14 +15,16 @@ import {
 import {initializeApp} from 'firebase/app';
 import {firebaseConfig} from '../firebase.tsx';
 import UserContext from '../UserContext.tsx';
+import {useNavigate} from 'react-router-dom';
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 function Profile() {
-    const {user} = useContext(UserContext); // Retrieve logged-in user context
+    const {user,setUser} = useContext(UserContext); // Retrieve logged-in user context
     const [userData, setUserData] = useState(null);
     const [userStats, setUserStats] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -118,6 +120,12 @@ function Profile() {
         },
     ];
 
+    const logout = (e)=>{
+        e.preventDefault();
+        setUser(null);
+        navigate('/');
+    }
+
     return (
         <div className="profile-container">
             <div className="profile-header">
@@ -138,6 +146,10 @@ function Profile() {
                     </div>
                 </div>
             </div>
+
+            <button onClick={logout}>
+                Logout
+            </button>
 
             <section className="statistics-section">
                 <h2>Statistics</h2>

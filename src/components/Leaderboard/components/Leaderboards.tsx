@@ -58,11 +58,6 @@ function PageHeader({ viewMode, onViewChange, userSchool }) {
           </div>
           <Select value={viewMode} onValueChange={onViewChange}>
             <SelectTrigger className="w-[180px] bg-white border-green-200 hover:border-green-300 transition-colors">
-              {viewMode === 'global' ? (
-                <Globe className="h-4 w-4 text-green-600 flex-shrink-0 mr-2" />
-              ) : (
-                <GraduationCap className="h-4 w-4 text-green-600 flex-shrink-0 mr-2" />
-              )}
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -177,7 +172,7 @@ function EmptyState({ viewMode }) {
 function SchoolSelector({ open, onSelect }) {
   return (
       <Dialog open={open} modal>
-        <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+        <DialogContent className="sm:max-w-[425px] bg-white shadow-lg rounded-lg">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <GraduationCap className="h-6 w-6 text-primary" />
@@ -187,7 +182,7 @@ function SchoolSelector({ open, onSelect }) {
               Choose your school to connect with your academic community
             </DialogDescription>
           </DialogHeader>
-          <Command className="rounded-lg border shadow-md bg-white dark:bg-gray-900">
+          <Command className="rounded-lg border shadow-md bg-white ">
             <CommandInput placeholder="Search schools..." />
             <CommandList>
               <CommandEmpty>No school found.</CommandEmpty>

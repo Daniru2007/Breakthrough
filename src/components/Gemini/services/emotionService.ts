@@ -10,11 +10,25 @@ const DEFAULT_EMOTION_DATA: EmotionData = {
   surprise: 0
 };
 
-export async function fetchEmotionData(): Promise<EmotionData> {
+export async function fetchEmotionData(userEmail): Promise<EmotionData> {
   try {
     console.log('Fetching emotion data from Firebase...');
-    const userId = 'U2l2GMnAkk8afriehuli'; // This should come from auth context
-    
+
+
+    const usersQuery = query(
+        collection(db, 'users'),
+        where('email', '==', userEmail) // Match by email
+    );
+    const usersSnapshot = await getDocs(usersQuery);
+
+    if (usersSnapshot.empty) {
+      console.error('No user document found for the given email.');
+      return;
+    }
+
+    // Step 2: Get the user's document reference
+    const userDoc = usersSnapshot.docs[0];
+    const userId = userDoc.id;
     const userRef = doc(db, 'users', userId);
     const emotionsRef = collection(db, 'EmotionData');
     const emotionQuery = query(emotionsRef, where('UserID', '==', userRef));

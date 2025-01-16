@@ -23,7 +23,7 @@ export const EmotionDataBox: React.FC<EmotionDataBoxProps> = ({ emotionData }) =
           <div key={name} className="flex flex-col items-center p-2 rounded-lg bg-gray-50">
             <Icon className={`w-6 h-6 ${color} mb-2`} />
             <span className="text-sm text-gray-600">{name}</span>
-            <span className="text-lg font-semibold">{value}</span>
+            <span className="text-lg font-semibold">{value.toFixed(2)}</span>
           </div>
         ))}
       </div>
