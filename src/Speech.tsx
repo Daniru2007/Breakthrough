@@ -48,43 +48,43 @@ function Speech() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 relative">
-      <SpeakingBackground />
+      <div className="min-h-screen bg-gray-50 relative">
+        <SpeakingBackground />
 
-      <div className="speech-container">
-        <div className="max-w-4xl mx-auto">
-          <SpeakingHeader />
+        <div className="speech-container">
+          <div className="max-w-4xl mx-auto">
+            <SpeakingHeader />
 
-          <SpeakingProgress
-            currentStep={currentQuestionIndex + 1}
-            totalSteps={questions.length}
-          />
+            <SpeakingProgress
+                currentStep={currentQuestionIndex + 1}
+                totalSteps={questions.length}
+            />
 
-          <div className="speech-content">
-            <div className="flex-1">
-              <SpeakingContainer
-                question={questions[currentQuestionIndex]}
-                isTimerComplete={isTimerComplete}
-                recordingState={recordingState}
-                transcript={transcript}
-                fullStory={fullStory}
-                onTimerComplete={handleTimerComplete}
-                onStartRecording={handleStartRecording}
-                onStopRecording={handleStopRecording}
-                onNext={handleNext}
-                onBack={handleBack}
-                canGoBack={currentQuestionIndex > 0}
-                canGoNext={currentQuestionIndex < questions.length - 1}
-              />
-            </div>
+            <div className="speech-content">
+              <div className="flex-1">
+                <SpeakingContainer
+                    question={questions[currentQuestionIndex]}
+                    isTimerComplete={isTimerComplete}
+                    recordingState={recordingState}
+                    transcript={transcript}
+                    fullStory={fullStory}
+                    onTimerComplete={handleTimerComplete}
+                    onStartRecording={handleStartRecording}
+                    onStopRecording={handleStopRecording}
+                    onNext={handleNext}
+                    onBack={handleBack}
+                    canGoBack={currentQuestionIndex > 0}
+                    canGoNext={currentQuestionIndex < questions.length - 1}
+                />
+              </div>
 
-            <div className="speech-sidebar">
-              <SpeakingTips />
+              <div className="speech-sidebar">
+                <SpeakingTips />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

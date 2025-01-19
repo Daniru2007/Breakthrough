@@ -3,6 +3,7 @@ import { Globe, Brain, Eye, Ear, HandMetal, Sparkles, ArrowUp } from 'lucide-rea
 import {useNavigate} from "react-router-dom";
 import { SubjectButton } from './components/SubjectButton';
 import './Home.css';
+import illustration from './assets/icon.svg';
 
 function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -45,7 +46,6 @@ function Home() {
       
       <nav className="nav-container">
         <a href="/" className="logo">
-          <Globe size={32} />
           BreakThrough
         </a>
         <div>
@@ -56,8 +56,8 @@ function Home() {
       </nav>
 
       <section className="hero">
-        <div className="globe">
-          <Globe size={200} strokeWidth={1} />
+        <div className="image-section">
+          <img src={illustration} alt="Learning illustration" />
         </div>
         <h1>The free, fun, and effective way to<br />learn a new skill!</h1>
         <button className="button button-primary" onClick={()=>navigate("/sign")}>GET STARTED</button>
@@ -120,15 +120,6 @@ function Home() {
             <h3>Cognitive Support</h3>
             <p>Clear instructions and structured learning paths</p>
           </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <h2 className="section-title">Success Stories</h2>
-        <div className="testimonial">
-          <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?auto=format&fit=crop&w=160&h=160" alt="Happy student" />
-          <p className="testimonial-text">"BreakThrough has transformed how my child learns. The adaptive features and engaging content have made education accessible and fun!"</p>
-          <p className="testimonial-author">Sarah's Parent</p>
         </div>
       </section>
 

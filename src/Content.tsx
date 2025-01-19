@@ -25,6 +25,7 @@ import Mistake from "./Mistake.tsx";
 import {PdfSum} from "./components/PdfSum.tsx";
 import Sum from "./components/Sum.tsx";
 import Gemini from "./Gemini.tsx";
+import SpeechRate from "./components/SpeechRate/SpeechRate.tsx";
 
 function Content() {
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ function Content() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="learn/speaking" element={<Speech />} />
+              <Route path="learn/speaking/rate" element={<SpeechRate/>} />
             <Route path="learn/quiz" element={<Lessons />} />
             <Route path="learn/game" element={<Game />} />
             <Route path="learn/tute" element={<Tutorial />} />
