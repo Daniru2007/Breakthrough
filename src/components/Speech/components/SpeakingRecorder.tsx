@@ -16,7 +16,7 @@ export function SpeakingRecorder({
       {!isRecording ? (
         <button
           onClick={onStartRecording}
-          className="bg-primary hover:bg-primary-dark text-white rounded-full p-6 transition-all duration-300 transform hover:scale-110 shadow-lg animate-pulse-slow"
+          className="bg-primary hover:bg-primary-dark text-black rounded-full p-6 transition-all duration-300 transform hover:scale-110 shadow-lg animate-pulse-slow"
         >
           <Mic size={32} />
         </button>

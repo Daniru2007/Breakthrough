@@ -9,7 +9,7 @@ export function Title() {
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 50 }}
     >
-      Smart Learning Platform
+      Personalized Learning
     </motion.h1>
   );
 }

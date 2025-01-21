@@ -19,6 +19,7 @@ import './Content.css';
 import Speech from "./Speech.tsx";
 import Lessons from "./Lessons.tsx";
 import Game from "./GameUpdate.tsx";
+import SpeechRating from "./components/SpeechRating/SpeechRating.tsx"
 import UserContext from "./UserContext.tsx";
 import Tutorial from "./Tutorial.tsx";
 import Mistake from "./Mistake.tsx";
@@ -54,7 +55,7 @@ function Content() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="learn/speaking" element={<Speech />} />
-              <Route path="learn/speaking/rate" element={<SpeechRate/>} />
+              <Route path="learn/speaking/rate" element={<SpeechRating/>} />
             <Route path="learn/quiz" element={<Lessons />} />
             <Route path="learn/game" element={<Game />} />
             <Route path="learn/tute" element={<Tutorial />} />

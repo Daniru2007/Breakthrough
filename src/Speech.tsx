@@ -79,7 +79,6 @@ function Speech() {
               </div>
 
               <div className="speech-sidebar">
-                <SpeakingTips />
               </div>
             </div>
           </div>
