@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, { useContext, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -18,7 +18,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import UserContext from "../UserContext.tsx";
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getFirestore(app);
@@ -48,7 +48,7 @@ export function SignUpForm() {
             console.log("Form submitted:", formData);
 
             const date = new Date();
-            // Add a new user document to the "users" collection
+
             const userRef = await addDoc(collection(database, "users"), {
                 Username: formData.name,
                 email: formData.email,
@@ -57,7 +57,6 @@ export function SignUpForm() {
                 JoinedAt: date,
             });
 
-            // Use the user ID to create a corresponding document in "UserExtension"
             await setDoc(doc(database, "UserExtension", userRef.id), {
                 UserID: userRef,
                 NoLessons: 0,
@@ -66,7 +65,6 @@ export function SignUpForm() {
                 DurationOfLessons: 0,
             });
 
-            // Create a document in the "mistakes" collection for this user
             await setDoc(doc(database, "mistakes", userRef.id), {
                 userID: userRef,
                 ict: [],
@@ -81,7 +79,6 @@ export function SignUpForm() {
                 surprise:0
             });
 
-            // Update the UserContext
             setUser({
                 email: formData.email,
                 password: formData.password,
@@ -100,7 +97,6 @@ export function SignUpForm() {
             const result = await signInWithPopup(auth, googleProvider);
             const usr = result.user;
 
-            // Add user to Firestore
             const userRef = await addDoc(collection(database, "users"), {
                 Username: usr.displayName,
                 email: usr.email,
@@ -108,7 +104,6 @@ export function SignUpForm() {
                 provider: "google",
             });
 
-            // Use the user ID to create a corresponding document in "UserExtension"
             await setDoc(doc(database, "UserExtension", userRef.id), {
                 UserID: userRef,
                 NoLessons: 0,
@@ -117,7 +112,6 @@ export function SignUpForm() {
                 DurationOfLessons: 0,
             });
 
-            // Create a document in the "mistakes" collection for this user
             await setDoc(doc(database, "mistakes", userRef.id), {
                 userID: userRef,
                 ict: [],
@@ -133,7 +127,6 @@ export function SignUpForm() {
                 surprise:0
             });
 
-            // Update the UserContext
             setUser({
                 email: usr.email,
                 password: usr.uid,

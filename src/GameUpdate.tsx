@@ -1,4 +1,4 @@
-// ts-nocheck
+
 import React from 'react';
 import { GameBoard } from './components/GameUpdate/components/GameBoard';
 import { GameProvider } from './components/GameUpdate/context/GameContext';

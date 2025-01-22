@@ -24,7 +24,7 @@ function SpeechRate() {
       const ratingData = ratingDoc.data();
       
       if (!ratingDoc.exists() || !ratingData?.[recording.count.toString()]) {
-        // Fetch username for the recording
+
         const userRef = collection(db, 'users');
         const q = query(userRef, where('email', '==', user.email));
         const querySnapshot = await getDocs(q);

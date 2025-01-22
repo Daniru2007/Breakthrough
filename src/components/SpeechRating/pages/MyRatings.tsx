@@ -23,7 +23,6 @@ export const MyRatings = () => {
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | null>(null);
 
-  // First get the user's ID
   useEffect(() => {
     const fetchUserId = async () => {
       if (!user?.email) return;
@@ -44,7 +43,6 @@ export const MyRatings = () => {
     fetchUserId();
   }, [user]);
 
-  // Then fetch the recordings using the user ID
   useEffect(() => {
     const fetchUserRatings = async () => {
       if (!userId) return;
@@ -72,7 +70,6 @@ export const MyRatings = () => {
           return;
         }
 
-        // Get URLs and prepare recordings data
         const recordingsData = await Promise.all(
           userRecordingRefs.map(async (ref) => {
             const count = parseInt(ref.name.split('_')[1]);
@@ -83,7 +80,6 @@ export const MyRatings = () => {
 
         console.log('Recordings data:', recordingsData);
 
-        // Fetch ratings for each recording
         const ratingsRef = collection(db, 'ratings');
         const ratingsPromises = recordingsData.map(async (recording) => {
           const q = query(

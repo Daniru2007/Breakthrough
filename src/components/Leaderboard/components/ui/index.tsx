@@ -4,16 +4,16 @@ import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-// import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-// import * as LabelPrimitive from "@radix-ui/react-label";
-// import * as PopoverPrimitive from "@radix-ui/react-popover";
-// import * as SelectPrimitive from "@radix-ui/react-select";
-// import * as SeparatorPrimitive from "@radix-ui/react-separator";
-// import * as ToastPrimitive from "@radix-ui/react-toast";
+
+
+
+
+
+
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { cn } from "../../lib/utils";
 
-// Card Component
+
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)} {...props} />
@@ -56,7 +56,7 @@ const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
 );
 CardFooter.displayName = "CardFooter";
 
-// Dialog Component
+
 const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
 const DialogPortal = DialogPrimitive.Portal;
@@ -135,17 +135,16 @@ const DialogDescription = React.forwardRef<
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
-// Export all components
+
 export {
-  // Card components
+
   Card,
   CardHeader,
   CardFooter,
   CardTitle,
   CardDescription,
   CardContent,
-  
-  // Dialog components
+
   Dialog,
   DialogTrigger,
   DialogContent,

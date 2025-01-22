@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { useContext } from 'react';
 import {doc, getDocs, query, where, collection, updateDoc, getFirestore} from 'firebase/firestore';
 import UserContext from './UserContext';

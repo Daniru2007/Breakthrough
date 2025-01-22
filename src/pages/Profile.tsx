@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, {useContext, useEffect, useState} from 'react';
 import {Clock, Zap, Trophy, Medal, Pencil} from 'lucide-react';
 import './Profile.css';
@@ -34,7 +34,6 @@ function Profile() {
                     return;
                 }
 
-                // Query the `users` collection to find the userId by email
                 const usersQuery = query(
                     collection(db, 'users'),
                     where('email', '==', user.email)
@@ -51,7 +50,6 @@ function Profile() {
                 const userDetails = userDoc.data();
                 const userRef = doc(db, 'users', userId);
 
-                // Fetch user's stats from `UserExtension`
                 const userExtensionQuery = query(
                     collection(db, 'UserExtension'),
                     where('UserID', '==', userRef)
@@ -102,7 +100,6 @@ function Profile() {
         {icon: Medal, value: userStats.lessonsCompleted, label: 'Number of Lessons'},
     ];
 
-    // Example achievements array
     const achievements = [
         {
             icon: '🔥',

@@ -1,4 +1,4 @@
-// ts-nocheck
+
 import React, {useState, useEffect, useCallback, useContext} from 'react';
 import { Player } from './Player';
 import { Enemy } from './Enemy';
@@ -42,7 +42,7 @@ export const updateUserMistakesGame = async (
     question: string
 ): Promise<void> => {
   try {
-    // Step 1: Query the `users` collection to get the user document and reference
+
     const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
     const usersSnapshot = await getDocs(usersQuery);
 
@@ -54,7 +54,6 @@ export const updateUserMistakesGame = async (
     const userDoc = usersSnapshot.docs[0];
     const userRef = doc(db, 'users', userDoc.id); // Reference to the user document
 
-    // Step 2: Query the `mistakes` collection using the `userID` reference
     const mistakesQuery = query(collection(db, 'mistakes'), where('userID', '==', userRef));
     const mistakesSnapshot = await getDocs(mistakesQuery);
 
@@ -65,7 +64,6 @@ export const updateUserMistakesGame = async (
 
     const mistakeDoc = mistakesSnapshot.docs[0];
 
-    // Step 3: Append the new mistake to the subject array
     const newMistake = {
       question,
       date: new Date(), // Current date and time
@@ -98,7 +96,7 @@ export const GameBoard: React.FC = () => {
 
   const isGamePaused = gameOver || gameWon || !!currentQuestion || showCollisionModal;
   const {user} = useContext(userContext);
-  // Initialize board and enemies
+
   useEffect(() => {
     const newBoard = generateBoard();
     setBoard(newBoard);
@@ -113,7 +111,6 @@ export const GameBoard: React.FC = () => {
     }
   }, [level, generateBoard, initializeEnemies, setBoard]);
 
-  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       setCellSize(calculateCellSize());
@@ -123,7 +120,6 @@ export const GameBoard: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Use enemy movement hook
   useEnemyMovement({
     enemies,
     setEnemies,
@@ -132,7 +128,6 @@ export const GameBoard: React.FC = () => {
     isPaused: isGamePaused,
   });
 
-  // Collision detection
   useEffect(() => {
     enemies.forEach(enemy => {
       if (checkCollision(playerPos, enemy.position)) {
@@ -158,7 +153,6 @@ export const GameBoard: React.FC = () => {
     }
   }, [board, level]);
 
-  // Use player movement hook
   usePlayerMovement({
     playerPos,
     setPlayerPos,

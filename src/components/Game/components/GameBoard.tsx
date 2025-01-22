@@ -34,7 +34,7 @@ const updateUserMistakesGame = async (
     additionalMistakes: number
 ): Promise<void> => {
   try {
-    // Step 1: Query the `users` collection to get the user document and reference
+
     const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
     const usersSnapshot = await getDocs(usersQuery);
 
@@ -46,7 +46,6 @@ const updateUserMistakesGame = async (
     const userDoc = usersSnapshot.docs[0];
     const userRef = doc(db, 'users', userDoc.id); // Reference to the user document
 
-    // Step 2: Query the `mistakes` collection using the `userID` reference
     const mistakesQuery = query(collection(db, 'mistakes'), where('userID', '==', userRef));
     const mistakesSnapshot = await getDocs(mistakesQuery);
 
@@ -58,7 +57,6 @@ const updateUserMistakesGame = async (
     const mistakeDoc = mistakesSnapshot.docs[0];
     const mistakeData = mistakeDoc.data();
 
-    // Step 3: Update the specified subject's mistakes
     const updatedMistakes = (mistakeData[subject] || 0) + additionalMistakes;
     await updateDoc(doc(db, 'mistakes', mistakeDoc.id), {
       [subject]: updatedMistakes,

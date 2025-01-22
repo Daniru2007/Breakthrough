@@ -1,5 +1,5 @@
-//ts-nocheck
-// import React from 'react';
+
+
 import {
   Dialog,
   DialogContent,
@@ -16,7 +16,7 @@ import {
   CommandList,
 } from './ui/command';
 import { GraduationCap } from 'lucide-react';
-// import { cn } from '../lib/utils';
+
 import schools from '../data/schools.json';
 
 interface SchoolSelectorProps {

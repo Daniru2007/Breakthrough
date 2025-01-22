@@ -4,7 +4,7 @@ import {
   Languages, 
   Music, 
   Globe2, 
-  // Code,
+
   BookOpen 
 } from 'lucide-react';
 

@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 import React, {useContext, useState} from 'react';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -8,7 +8,7 @@ import { useNavigate  } from 'react-router-dom';
 import UserContext from "../UserContext.tsx";
 
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+
 const database = getFirestore(app);
 
 interface FormData {

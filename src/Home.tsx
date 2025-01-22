@@ -11,12 +11,11 @@ function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Update progress bar
+
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / totalScroll) * 100;
       setScrollProgress(progress);
 
-      // Show/hide scroll to top button
       setShowScrollTop(window.scrollY > 500);
     };
 

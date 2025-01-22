@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, { useEffect, useRef, useState } from 'react';
 import * as Human from '@vladmandic/human';
 import type { EmotionDetectionProps } from '../types/emotion';
@@ -94,20 +94,20 @@ const EmotionTracker: React.FC<EmotionDetectionProps> = ({onEmotionUpdate }) => 
 
       try {
         const result = await humanRef.current.detect(videoRef.current);
-        // console.log('Detection result:', result.face[0].emotion);
+
 
         if (result.face && result.face[0]?.emotion) {
           const emotions = result.face[0].emotion;
-          // Find the emotion with the highest confidence
+
           let maxConfidence = 0;
           let dominantEmotion = 'neutral';
 
           Object.entries(emotions).forEach(([i, confidence]) => {
             const {score,emotion} = confidence;
             if (score > maxConfidence) {
-              // console.log('Emotion:', emotion, 'Confidence:', confidence);
+
               maxConfidence = score;
-              // Map the emotion names to our supported set
+
               switch (emotion) {
                 case 'happy':
                   dominantEmotion = 'happy';

@@ -1,4 +1,4 @@
-// ts-nocheck
+
 import {useState, useCallback, useEffect, useContext} from 'react';
 import type { EmotionData } from './types/emotion';
 import { PopupOverlay } from './components/PopupOverlay';
@@ -19,7 +19,7 @@ const db = getFirestore(app);
 
 export const updateEmotion = async (userEmail: string, emotionData): Promise<void> => {
   try {
-    // Step 1: Query the User document to get the document ID
+
     const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
     const usersSnapshot = await getDocs(usersQuery);
 
@@ -33,7 +33,6 @@ export const updateEmotion = async (userEmail: string, emotionData): Promise<voi
     const userRef = doc(db, 'users', userId);
     console.log(userId)
 
-    // Step 2: Query the UserExtension document
     const userExtensionQuery = query(
         collection(db, 'EmotionData'),
         where('UserID', '==', userRef)
@@ -48,7 +47,6 @@ export const updateEmotion = async (userEmail: string, emotionData): Promise<voi
     const userExtensionDoc = userExtensionSnapshot.docs[0];
     const userExtensionData = userExtensionDoc.data();
 
-    // Step 3: Update the XP
     await updateDoc(doc(db, 'EmotionData', userExtensionDoc.id), {
       happy: userExtensionData.happy + emotionData.happy,
       sad: userExtensionData.sad + emotionData.sad,

@@ -1,4 +1,4 @@
-// ts-nocheck
+
 import { getDocs, collection, query, where, updateDoc, doc } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
@@ -14,7 +14,7 @@ const db = getFirestore(app);
  */
 export const updateUserXPInFirestore = async (userEmail: string, additionalXP: number): Promise<void> => {
     try {
-        // Step 1: Query the User document to get the document ID
+
         const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
         const usersSnapshot = await getDocs(usersQuery);
 
@@ -27,7 +27,6 @@ export const updateUserXPInFirestore = async (userEmail: string, additionalXP: n
         const userId = userDoc.id; // The document ID for the user
         const userRef = doc(db, 'users', userId);
 
-        // Step 2: Query the UserExtension document
         const userExtensionQuery = query(
             collection(db, 'UserExtension'),
             where('UserID', '==', userRef)
@@ -42,7 +41,6 @@ export const updateUserXPInFirestore = async (userEmail: string, additionalXP: n
         const userExtensionDoc = userExtensionSnapshot.docs[0];
         const userExtensionData = userExtensionDoc.data();
 
-        // Step 3: Update the XP
         const updatedXP = (userExtensionData.XP || 0) + additionalXP;
         await updateDoc(doc(db, 'UserExtension', userExtensionDoc.id), {
             XP: updatedXP,
@@ -56,7 +54,7 @@ export const updateUserXPInFirestore = async (userEmail: string, additionalXP: n
 
 export const DoubleXP = async (setUserExtension, userEmail: string): Promise<void> => {
     try {
-        // Step 1: Query the User document to get the document ID
+
         const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
         const usersSnapshot = await getDocs(usersQuery);
 
@@ -69,7 +67,6 @@ export const DoubleXP = async (setUserExtension, userEmail: string): Promise<voi
         const userId = userDoc.id; // The document ID for the user
         const userRef = doc(db, 'users', userId);
 
-        // Step 2: Query the UserExtension document
         const userExtensionQuery = query(
             collection(db, 'UserExtension'),
             where('UserID', '==', userRef)
@@ -84,7 +81,6 @@ export const DoubleXP = async (setUserExtension, userEmail: string): Promise<voi
         const userExtensionDoc = userExtensionSnapshot.docs[0];
         const userExtensionData = userExtensionDoc.data();
 
-        // Step 3: Update the XP and Gems
         const updatedXP = (userExtensionData.XP * 2);
         const updatedGems = (userExtensionData.Gems - 100);
         if (updatedGems < 0) {
@@ -104,7 +100,7 @@ export const DoubleXP = async (setUserExtension, userEmail: string): Promise<voi
 };
 export const DisplayGems = async (setUserExtension, userEmail: string): Promise<void> => {
     try {
-        // Step 1: Query the User document to get the document ID
+
         const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
         const usersSnapshot = await getDocs(usersQuery);
 
@@ -117,7 +113,6 @@ export const DisplayGems = async (setUserExtension, userEmail: string): Promise<
         const userId = userDoc.id; // The document ID for the user
         const userRef = doc(db, 'users', userId);
 
-        // Step 2: Query the UserExtension document
         const userExtensionQuery = query(
             collection(db, 'UserExtension'),
             where('UserID', '==', userRef)

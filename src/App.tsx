@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, {useContext, useState} from 'react';
 import Home from './Home';
 import Content from './Content.tsx';

@@ -22,7 +22,7 @@ export const updateUserMistakesByEmail = async (
     question: string
 ): Promise<void> => {
   try {
-    // Step 1: Query the `users` collection to get the user document and reference
+
     const usersQuery = query(collection(db, 'users'), where('email', '==', userEmail));
     const usersSnapshot = await getDocs(usersQuery);
 
@@ -34,7 +34,6 @@ export const updateUserMistakesByEmail = async (
     const userDoc = usersSnapshot.docs[0];
     const userRef = doc(db, 'users', userDoc.id); // Reference to the user document
 
-    // Step 2: Query the `mistakes` collection using the `userID` reference
     const mistakesQuery = query(collection(db, 'mistakes'), where('userID', '==', userRef));
     const mistakesSnapshot = await getDocs(mistakesQuery);
 
@@ -45,7 +44,6 @@ export const updateUserMistakesByEmail = async (
 
     const mistakeDoc = mistakesSnapshot.docs[0];
 
-    // Step 3: Append the new mistake to the subject array
     const newMistake = {
       question,
       date: new Date(), // Current date and time

@@ -1,4 +1,4 @@
-// ts-nocheck
+
 import React from 'react';
 import { useGame } from '../context/GameContext';
 import { Star } from 'lucide-react';

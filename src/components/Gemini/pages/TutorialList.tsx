@@ -6,7 +6,7 @@ import tutorials from '../data/tutorials.json';
 import { useEmotionData } from '../hooks/useEmotionData';
 
 export const TutorialList: React.FC = () => {
-  // TODO: Replace with actual user ID from auth
+
   const { emotionData, loading, error } = useEmotionData('currentUserId');
 
   return (

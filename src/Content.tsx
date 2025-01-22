@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, {useContext} from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { CircleArrowLeft } from 'lucide-react'; // Import from Lucide React

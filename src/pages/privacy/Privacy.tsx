@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, { useState } from 'react';
 import { Shield, Eye, Users, Bell } from 'lucide-react';
 import './Privacy.css';

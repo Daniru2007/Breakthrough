@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Gamepad2, X } from 'lucide-react';

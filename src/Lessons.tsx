@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, { useState } from 'react';
 import ProgressBar from './components/ProgressBar';
 import QuestionCard from './components/QuestionCard';
@@ -13,7 +13,7 @@ function Lessons() {
   const question = questionsData.questions[currentQuestion];
 
   const handleSelectAnswer = (answer: string) => {
-    // if (selectedAnswer) return;
+
     setSelectedAnswer(answer);
 
     if (answer === question.correctAnswer) {

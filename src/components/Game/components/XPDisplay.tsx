@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGame } from '../context/GameContext';
 import { Star } from 'lucide-react';
-// import { theme } from '../styles/theme';
+
 
 export const XPDisplay: React.FC = () => {
   const { xp } = useGame();

@@ -1,4 +1,4 @@
-// ts-nocheck
+
 import {useContext, useState, useEffect} from 'react';
 import { collection, query, getDocs, doc, where, updateDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
@@ -13,7 +13,7 @@ import { Card, CardContent } from './ui/card';
 import schools from '../data/schools.json';
 import UserContext from "../../../UserContext.tsx";
 
-// Constants
+
 const TEST_USER = {
   EMAIL: 'aoeu@gmail.com'
 };
@@ -22,7 +22,7 @@ const calculateProgress = (xp: number, maxXP: number = 5000): number => {
   return Math.min(100, (xp / maxXP) * 100);
 };
 
-// Types
+
 interface UserData {
   name: string;
   avatar: string;
@@ -46,7 +46,7 @@ interface FirestoreUserExtension {
   UserID: any;
 }
 
-// Components
+
 function PageHeader({ viewMode, onViewChange, userSchool }) {
   return (
     <div className="sticky top-0 z-40 w-full border-b bg-white">
@@ -206,7 +206,7 @@ function SchoolSelector({ open, onSelect }) {
   );
 }
 
-// Main Component
+
 export default function Leaderboards() {
   const { user } = useContext(UserContext); // Retrieve logged-in user context
   const [leaderboardData, setLeaderboardData] = useState([]);

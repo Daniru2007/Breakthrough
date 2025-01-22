@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, { useState } from 'react';
 import { Volume2, Bell, Moon, Globe, User, Book, Target, MessageSquare } from 'lucide-react';
 import './Settings.css';

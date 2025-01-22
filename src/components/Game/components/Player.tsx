@@ -1,6 +1,6 @@
 import React from 'react';
 import { User } from 'lucide-react';
-// import { theme } from '../styles/theme';
+
 
 interface PlayerProps {
   position: { x: number; y: number };

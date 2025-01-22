@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, { useState, useEffect } from 'react';
 import { Trophy, Crown, Medal, Flame, Clock } from 'lucide-react';
 import { collection, query, getDocs, doc, getFirestore, where } from 'firebase/firestore';
@@ -16,7 +16,7 @@ function Leaderboards() {
   useEffect(() => {
     const fetchLeaderboards = async () => {
       try {
-        // Step 1: Fetch all users
+
         const usersQuery = query(collection(db, 'users'));
         const usersSnapshot = await getDocs(usersQuery);
 
@@ -26,13 +26,11 @@ function Leaderboards() {
           return;
         }
 
-        // Step 2: Fetch corresponding UserExtension data for each user
         const userDataPromises = usersSnapshot.docs.map(async (userDoc) => {
           const userId = userDoc.id;
           const userDetails = userDoc.data();
           const userRef = doc(db, 'users', userId);
 
-          // Query the UserExtension collection for the user's stats
           const userExtensionQuery = query(
               collection(db, 'UserExtension'),
               where('UserID', '==', userRef)
@@ -56,10 +54,8 @@ function Leaderboards() {
           };
         });
 
-        // Wait for all promises to resolve
         const usersData = await Promise.all(userDataPromises);
 
-        // Step 3: Sort users by XP and assign ranks
         const sortedUsers = usersData
             .sort((a, b) => b.xp - a.xp)
             .map((user, index) => ({

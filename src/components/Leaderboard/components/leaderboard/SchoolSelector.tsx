@@ -15,7 +15,7 @@ import {
   CommandItem,
   CommandList,
 } from '../ui/command';
-// import { cn } from '../../lib/utils';
+
 import schools from '../../data/schools.json';
 
 interface SchoolSelectorProps {

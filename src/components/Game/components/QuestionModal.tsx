@@ -1,6 +1,6 @@
 import React from 'react';
 import { Question } from '../data/types';
-// import { theme } from '../styles/theme';
+
 
 interface QuestionModalProps {
   question: Question;

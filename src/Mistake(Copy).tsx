@@ -6,7 +6,7 @@ import { BookOpen } from 'lucide-react';
 import { SubjectMistake, SubjectType } from './components/Mistake/types/subject';
 import "./Mistake.css"
 
-// Mock data for subject-wise mistakes
+
 const mockMistakesBySubject: Record<SubjectType, SubjectMistake[]> = {
   Mathematics: [
     { date: '2024-03-01', count: 5, subject: 'Mathematics' },

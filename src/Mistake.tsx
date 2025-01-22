@@ -17,7 +17,7 @@ import { Stats } from './components/Mistake/components/Stats';
 import './Mistake.css';
 import { SubjectMistake, SubjectType } from './components/Mistake/types/subject';
 
-// Initialize Firebase and Firestore
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -40,7 +40,6 @@ function Mistake() {
           return;
         }
 
-        // Step 1: Query the `users` collection to find the logged-in user
         const usersQuery = query(
             collection(db, 'users'),
             where('email', '==', user.email) // Match by email
@@ -52,12 +51,10 @@ function Mistake() {
           return;
         }
 
-        // Step 2: Get the user's document reference
         const userDoc = usersSnapshot.docs[0];
         const userId = userDoc.id;
         const userRef = doc(db, 'users', userId);
 
-        // Step 3: Query the `mistakes` collection using the userId
         const mistakesQuery = query(
             collection(db, 'mistakes'),
             where('userID', '==', userRef) // Filter mistakes by userId
@@ -75,19 +72,18 @@ function Mistake() {
           ICT: [],
         };
 
-        // Process each mistake document
         mistakesSnapshot.forEach((doc) => {
           const data = doc.data();
           const formatDate = (timestamp: Timestamp) => {
             return new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000).toISOString(); // ISO string format
           };
-          // Extract Maths mistakes
+
           let totalCount = {'Mathematics':{},'ICT':{}};
           if (data.maths) {
             data.maths.forEach((item: { date: string; question: string }) => {
               const formattedDate = formatDate(item.date); // Format the date into YYYY-MM-DD
               const dateKey = formattedDate.split('T')[0]; // Extract just the date part (YYYY-MM-DD)
-              // Update totalCount for Mathematics
+
               if (totalCount['Mathematics'][dateKey]) {
                 totalCount['Mathematics'][dateKey] += 1;
               } else {
@@ -103,12 +99,11 @@ function Mistake() {
             });
           }
 
-          // Extract ICT mistakes
           if (data.ict) {
             data.ict.forEach((item: { date: string; question: string }) => {
               const formattedDate = formatDate(item.date); // Format the date into YYYY-MM-DD
               const dateKey = formattedDate.split('T')[0]; // Extract just the date part (YYYY-MM-DD)
-              // Update totalCount for Mathematics
+
               if (totalCount['ICT'][dateKey]) {
                 totalCount['ICT'][dateKey] += 1;
               } else {
@@ -141,13 +136,11 @@ function Mistake() {
           }
         });
 
-        // Step 4: Calculate stats
         const totalMistakes = fetchedMistakes.length;
-        const commonCategory = 'Mathematics'; // Placeholder: you can add logic to calculate the actual most common category
+        const commonCategory = 'Mathematics';
         const streakDays = calculateStreakDays(fetchedMistakes);
         const improvementRate = calculateImprovementRate(subjectCounts);
 
-        // Update state
         setMistakes(fetchedMistakes);
         setMistakesBySubject(subjectCounts);
         setStats({
@@ -165,14 +158,13 @@ function Mistake() {
     console.log(mistakesBySubject);
   }, [mistakes, mistakesBySubject, user]);
 
-  // Helper function to calculate streak days
   const calculateStreakDays = (mistakes) => {
     const dates = mistakes.map((m) => new Date(m.date).toDateString());
     const uniqueDates = new Set(dates);
     return uniqueDates.size; // Number of unique mistake dates = streak days
   };
 
-  // Helper function to calculate improvement rate (dummy logic)
+
   const calculateImprovementRate = (mistakesBySubject) => {
     let rate = 0;
     Object.values(mistakesBySubject).forEach((mistakes) => {

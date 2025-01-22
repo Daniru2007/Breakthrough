@@ -13,7 +13,6 @@ export const RecordPage = () => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
 
-  // Fetch user ID from Firestore based on email
   useEffect(() => {
     const fetchUserId = async () => {
       try {
@@ -22,7 +21,7 @@ export const RecordPage = () => {
         const querySnapshot = await getDocs(q);
         
         if (!querySnapshot.empty) {
-          // Get the first matching document's ID
+
           setUserId(querySnapshot.docs[0].id);
         } else {
           console.error('User not found');
@@ -43,8 +42,7 @@ export const RecordPage = () => {
     try {
       const storageRef = ref(storage);
       const result = await listAll(storageRef);
-      
-      // Filter recordings for current user and get the highest count
+
       const userRecordings = result.items
         .filter(item => item.name.startsWith(`${userId}_`))
         .map(item => {
