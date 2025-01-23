@@ -32,7 +32,7 @@ function cleanJsonResponse(text: string): string {
 export async function analyzePaper(imageBase64: string): Promise<AnalysisData> {
   try {
     const response = await axios.post<GeminiResponse>(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBCYrO6k4s2iLPNPQDklydVreIOar7clxI`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBTJddnF5Y4aErZ71ntwJ7GUrNfs4L9E5Y`,
       {
         contents: [{
           parts: [
