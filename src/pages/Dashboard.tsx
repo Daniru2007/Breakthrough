@@ -50,10 +50,10 @@ function Dashboard() {
           <div className="card">
             <div className="card-header">
               <h2>Leaderboard Position</h2>
-              <Trophy color="var(--secondary-color)" size={24} />
             </div>
             <p className="stat-value">#42</p>
             <p className="stat-label">in Bronze League</p>
+            <Trophy color="var(--secondary-color)" size={24} />
           </div>
         </div>
       </div>

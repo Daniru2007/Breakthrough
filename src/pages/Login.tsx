@@ -1,8 +1,10 @@
 import { LoginForm } from '../components/LoginForm';
 import illustration from '../assets/learn.svg';
+// import illustration from 'https://breakweb.s3.us-east-1.amazonaws.com/learn.svg';
 import { Link } from 'react-router-dom';
 
 export function Login() {
+  // const illustration = 'https://breakweb.s3.us-east-1.amazonaws.com/learn.svg';
   return (
     <div className="container">
       <div className="signup-container">

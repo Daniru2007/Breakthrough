@@ -5,6 +5,7 @@ import Content from './Content.tsx';
 import Lessons from './Lessons.tsx';
 import Speech from './Speech.tsx';
 import Sign from './Sign.tsx';
+
 import {BrowserRouter as Router, Routes, Route, useNavigate} from "react-router-dom";
 import UserContext from "./UserContext.tsx";
 import { Navigate } from 'react-router-dom';
